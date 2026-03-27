@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FONTE -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<title>Dudu Lanches</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+
+body{background:#0a0a0a;color:white}
+
+/* FUNDO */
+.bg{
+ position:fixed;
+ width:100%;
+ height:100%;
+ background:url('https://images.unsplash.com/photo-1550547660-d9450f859349') center/cover;
+ filter:blur(8px) brightness(0.4);
+ z-index:-1;
+}
+
+/* LOGO */
+.logo{
+ position:absolute;
+ top:40px;
+ width:100%;
+ text-align:center;
+ font-family:'Poppins', sans-serif;
+ font-size:32px;
+ letter-spacing:3px;
+}
+
+/* HERO */
+.hero{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ height:100vh;
+}
+
+.box{
+ background:rgba(20,20,20,0.9);
+ padding:30px;
+ border-radius:20px;
+ width:90%;
+ max-width:400px;
+ text-align:center;
+}
+
+.menu-btn{
+ margin:10px;
+ padding:12px;
+ background:#25D366;
+ border:none;
+ border-radius:10px;
+ width:100%;
+ cursor:pointer;
+}
+
+/* SEÇÕES */
+.section{
+ padding:40px 20px;
+}
+
+.cards{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+ gap:10px;
+}
+
+.card{
+ background:#111;
+ padding:10px;
+ border-radius:10px;
+}
+
+.card small{
+ color:#aaa;
+ display:block;
+ margin:5px 0;
+}
+
+.card button{
+ width:100%;
+ margin-top:5px;
+ background:#25D366;
+ border:none;
+ padding:8px;
+ border-radius:8px;
+ color:white;
+}
+
+/* CARRINHO */
+.cart{
+ position:fixed;
+ bottom:20px;
+ left:20px;
+ background:#111;
+ padding:15px;
+ border-radius:15px;
+}
+
+/* STATUS */
+.status{
+ position:fixed;
+ top:10px;
+ right:10px;
+ background:#111;
+ padding:10px;
+ border-radius:10px;
+}
+
+/* PAGAMENTO */
+.pagamento{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+ background:#000;
+ display:none;
+ justify-content:center;
+ align-items:center;
+}
+
+.pag-box{
+ background:#111;
+ padding:20px;
+ border-radius:15px;
+ text-align:center;
+}
+
+button{cursor:pointer}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="logo">Dudu Lanches</div>
+
+<div class="status" id="status">Aguardando pedido</div>
+
+<div class="hero">
+ <div class="box">
+  <button class="menu-btn" onclick="scrollToSec('lanches')">Lanches</button>
+  <button class="menu-btn" onclick="scrollToSec('combos')">Combos</button>
+  <button class="menu-btn" onclick="scrollToSec('doces')">Doces</button>
+  <button class="menu-btn" onclick="scrollToSec('bebidas')">Bebidas</button>
+ </div>
+</div>
+
+<!-- LANCHES -->
+<div id="lanches" class="section">
+<h2>Lanches</h2>
+<div class="cards">
+
+<div class="card">
+X-Burguer
+<small>Pão, carne, queijo</small>
+<button onclick="add('X-Burguer',18)">R$18</button>
+</div>
+
+<div class="card">
+X-Bacon
+<small>Pão, carne, bacon, queijo</small>
+<button onclick="add('X-Bacon',22)">R$22</button>
+</div>
+
+<div class="card">
+X-Tudo
+<small>Pão, carne, ovo, bacon, queijo</small>
+<button onclick="add('X-Tudo',25)">R$25</button>
+</div>
+
+<div class="card">
+X-Salada
+<small>Pão, carne, alface, tomate</small>
+<button onclick="add('X-Salada',20)">R$20</button>
+</div>
+
+</div>
+</div>
+
+<!-- COMBOS -->
+<div id="combos" class="section">
+<h2>Combos</h2>
+<div class="cards">
+
+<div class="card">
+Combo 1
+<small>X-Burguer + Batata + Refri</small>
+<button onclick="add('Combo 1',30)">R$30</button>
+</div>
+
+<div class="card">
+Combo 2
+<small>X-Bacon + Batata + Refri</small>
+<button onclick="add('Combo 2',40)">R$40</button>
+</div>
+
+<div class="card">
+Combo 3
+<small>2 Lanches + Batata + Refri</small>
+<button onclick="add('Combo 3',50)">R$50</button>
+</div>
+
+</div>
+</div>
+
+<!-- DOCES -->
+<div id="doces" class="section">
+<h2>Doces</h2>
+<div class="cards">
+
+<div class="card">
+Brownie
+<small>Chocolate artesanal</small>
+<button onclick="add('Brownie',10)">R$10</button>
+</div>
+
+<div class="card">
+Sorvete
+<small>Baunilha ou chocolate</small>
+<button onclick="add('Sorvete',12)">R$12</button>
+</div>
+
+<div class="card">
+Milkshake
+<small>300ml cremoso</small>
+<button onclick="add('Milkshake',15)">R$15</button>
+</div>
+
+</div>
+</div>
+
+<!-- BEBIDAS -->
+<div id="bebidas" class="section">
+<h2>Bebidas</h2>
+<div class="cards">
+
+<div class="card">
+Coca-Cola<button onclick="add('Coca',8)">R$8</button>
+</div>
+
+<div class="card">
+Guaraná<button onclick="add('Guaraná',7)">R$7</button>
+</div>
+
+<div class="card">
+Suco<button onclick="add('Suco',6)">R$6</button>
+</div>
+
+<div class="card">
+Água<button onclick="add('Água',5)">R$5</button>
+</div>
+
+</div>
+</div>
+
+<!-- CARRINHO -->
+<div class="cart">
+ <div id="itens"></div>
+ <button onclick="abrirPagamento()">Finalizar Pedido</button>
+</div>
+
+<!-- PAGAMENTO -->
+<div class="pagamento" id="pag">
+ <div class="pag-box">
+  <h3>Pagamento</h3>
+  <button onclick="cartao()">Cartão</button>
+  <button onclick="pix()">Pix</button>
+  <div id="pixArea"></div>
+ </div>
+</div>
+
+<script>
+let carrinho=[]
+let numero="5547999686095"
+
+// carregar status salvo
+let statusPedido = localStorage.getItem("status") || "Aguardando pedido"
+document.getElementById("status").innerText = statusPedido
+
+function scrollToSec(id){
+ document.getElementById(id).scrollIntoView({behavior:'smooth'})
+}
+
+function add(nome,preco){
+ carrinho.push({nome,preco})
+ atualizar()
+}
+
+function atualizar(){
+ let html=""
+ let total=0
+
+ carrinho.forEach(p=>{
+  html+=`<p>${p.nome} - R$${p.preco}</p>`
+  total+=p.preco
+ })
+
+ html+=`<strong>Total: R$${total}</strong>`
+
+ document.getElementById("itens").innerHTML=html
+}
+
+function abrirPagamento(){
+ if(carrinho.length===0){
+  alert("Adicione itens primeiro")
+  return
+ }
+ document.getElementById("pag").style.display="flex"
+}
+
+function gerarCodigo(){
+ return "PED"+Math.floor(Math.random()*10000)
+}
+
+function cartao(){
+ let codigo = gerarCodigo()
+ let total=0
+ let msg=`🍔 Pedido ${codigo}%0A`
+
+ carrinho.forEach(p=>{
+  msg+=`- ${p.nome} (R$${p.preco})%0A`
+  total+=p.preco
+ })
+
+ msg+=`%0A💳 Pagamento: Cartão na entrega`
+ msg+=`%0ATotal: R$${total}`
+
+ salvarStatus("Pedido recebido")
+
+ window.open(`https://wa.me/${numero}?text=${msg}`)
+
+ finalizarPedido()
+}
+
+function pix(){
+ let area=document.getElementById("pixArea")
+
+ let codigo = gerarCodigo()
+
+ area.innerHTML=`
+ <p><strong>Chave Pix:</strong> 10609085905</p>
+ <button onclick="copiar()">Copiar</button>
+ <p id="timer"></p>
+ `
+
+ let tempo=50
+
+ let t=setInterval(()=>{
+  tempo--
+  document.getElementById("timer").innerText="Aguardando pagamento: "+tempo+"s"
+
+  if(tempo<=0){
+   clearInterval(t)
+   salvarStatus("Pagamento confirmado")
+   finalizarPedido()
+  }
+ },1000)
+}
+
+function copiar(){
+ navigator.clipboard.writeText("10609085905")
+ alert("Chave Pix copiada!")
+}
+
+function salvarStatus(texto){
+ localStorage.setItem("status", texto)
+ document.getElementById("status").innerText = texto
+}
+
+function finalizarPedido(){
+ carrinho=[]
+ atualizar()
+ document.getElementById("pag").style.display="none"
+
+ setTimeout(()=> salvarStatus("Em preparo"),3000)
+ setTimeout(()=> salvarStatus("Saiu para entrega"),8000)
+}
+</script>
